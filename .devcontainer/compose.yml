@@ -8,7 +8,9 @@ services:
     - type: bind
       source: ..
       target: /workspace
+    networks:
+      - ferretdb-dev
 
 networks:
-  default:
-    name: ferretdb-dev
+  ferretdb-dev:
+    external: true
