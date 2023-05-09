@@ -33,7 +33,11 @@
                 "usernamehw.errorlens",
                 "davidanson.vscode-markdownlint",
                 "yzhang.markdown-all-in-one",
-                "gruntfuggly.todo-tree", "golang.Go", "esbenp.prettier-vscode"
+                "gruntfuggly.todo-tree", 
+                "golang.Go", 
+                "esbenp.prettier-vscode", 
+                "mongodb.mongodb-vscode", 
+                "ckolkman.vscode-postgres"
             ],
             "settings": {
                 "go.toolsManagement.checkForUpdates": "local",
