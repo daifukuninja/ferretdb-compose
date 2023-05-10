@@ -16,7 +16,9 @@ services:
       - ferretdb-dev
 
   ferretdb:
-    image: ghcr.io/ferretdb/ferretdb
+    build:
+      context: .
+      dockerfile: Dockerfile.ferretdb
     restart: on-failure
     ports:
       - 27017:27017
@@ -38,9 +40,6 @@ services:
     ports:
       - 8033:8081
     environment:
-      # ME_CONFIG_MONGODB_ADMINUSERNAME: root
-      # ME_CONFIG_MONGODB_ADMINPASSWORD: password
-      # ME_CONFIG_MONGODB_SERVER: ferretdb
       ME_CONFIG_MONGODB_URL: mongodb://ferretdb:27017/?readPreference=primary&ssl=false&directConnection=true
     networks:
       - ferretdb-dev
