@@ -3,7 +3,8 @@ services:
     image: postgres:14
     env_file: .env
     environment:
-      - POSTGRES_DB=ferretdb
+      POSTGRES_DB: ferretdb
+      TZ: "Asia/Tokyo"
     ports:
       - 5432:5432
     volumes:
@@ -23,28 +24,26 @@ services:
     ports:
       - 27017:27017
     environment:
-      # MONGO_INITDB_ROOT_USERNAME: root
-      # MONGO_INITDB_ROOT_PASSWORD: password
-      # MONGO_INITDB_DATABASE: ferretdb
       FERRETDB_POSTGRESQL_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/ferretdb
+      TZ: "Asia/Tokyo"
     networks:
       - ferretdb-dev
     depends_on:
       postgres:
         condition: service_healthy
 
-  mongo-express:
-    image: mongo-express
-    container_name: mongo-express
-    restart: always
-    ports:
-      - 8033:8081
-    environment:
-      ME_CONFIG_MONGODB_URL: mongodb://ferretdb:27017/?readPreference=primary&ssl=false&directConnection=true
-    networks:
-      - ferretdb-dev
-    depends_on:
-      - ferretdb
+  # mongo-express:
+  #   image: mongo-express
+  #   container_name: mongo-express
+  #   restart: always
+  #   ports:
+  #     - 8033:8081
+  #   environment:
+  #     ME_CONFIG_MONGODB_URL: mongodb://ferretdb:27017/?readPreference=primary&ssl=false&directConnection=true
+  #   networks:
+  #     - ferretdb-dev
+  #   depends_on:
+  #     - ferretdb
 
 volumes:
   postgres-bg-ferretdb:
